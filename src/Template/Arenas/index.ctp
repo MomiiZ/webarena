@@ -13,9 +13,13 @@
           <p>
               <!-- Lien Inscription -->
 <?php
-if ($this->request->session()->read('admin_logged_in')){
+if (!is_null($this->request->session()->read('Auth.User.email'))) {
    // user is logged 
-   echo $this->Html->link('Logout', array('controller' => 'Arenas', 'action' => 'logout')); 
+   echo $this->Html->link(
+        'Logout',
+        array('controller' => 'Arenas', 'action' => 'logout'),
+        ['class' => 'button']
+            ); 
 } else {
    // the user is not logged in
     echo $this->Html->link(
@@ -90,9 +94,9 @@ if ($this->request->session()->read('admin_logged_in')){
 </div>
 </body>
 <footer>
-    <div class="container">
-        <p class="text-center"> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
-        <p class="text-center">Pour la connexion Facebook utiliser le port 8888</p>
+    <div class="footer-center">
+        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
+
     </div>
 </footer>
 </html>

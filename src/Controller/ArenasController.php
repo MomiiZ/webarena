@@ -41,10 +41,10 @@ class ArenasController  extends AppController
         if ($this->request->is('post')) {
             $user = $this->Players->patchEntity($user, $this->request->data);
             if ($this->Players->save($user)) {
-                $this->Flash->success(__("Le player a été sauvegardé. Connectez-vous !"));
+                $this->Flash->success(__("The player has been created,sign in to play !"));
                 return $this->redirect(['action' => 'login']);
             }
-            $this->Flash->error(__("Impossible d'ajouter l'utilisateur."));
+            $this->Flash->error(__("Impossible to add the player."));
         }
         $this->set('user', $user);
 
@@ -67,7 +67,7 @@ class ArenasController  extends AppController
     public function logout()
     {
         return $this->redirect($this->Auth->logout());
-        $this->Flash->success('Vous êtes maintenant déconnecté.');
+        $this->Flash->success('You are signed out.');
     }
 
 

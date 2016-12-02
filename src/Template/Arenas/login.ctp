@@ -9,3 +9,10 @@
 <?= $this->Form->button(__('Login')); ?>
 <?= $this->Form->end() ?>
 </div>
+
+<footer>
+    <div class="footer-center">
+        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
+
+    </div>
+</footer>
