@@ -52,7 +52,7 @@ $name = $session->read('Auth.User.email');
 
 $name1 = $this->Html->link(
         $name,
-        array('controller' => 'Arenas', 'action' => 'player')); 
+        array('controller' => 'Arenas', 'action' => 'fighter')); 
         
         echo '<li><a>';echo $name1; echo '</a></li>';                   
 if (!is_null($this->request->session()->read('Auth.User.email'))) {
