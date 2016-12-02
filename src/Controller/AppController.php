@@ -67,6 +67,7 @@ class AppController extends Controller
                 'action' => 'login'
            ] 
         ]);
+        $this->Auth->allow(['index','add']);
     }
 
     
