@@ -38,6 +38,9 @@ $name = $session->read('Auth.User.email');
 ?>
 </head>
 <body>
+    <div id="fb-root"></div>
+
+    
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
@@ -97,4 +100,5 @@ if (!is_null($this->request->session()->read('Auth.User.email'))) {
 <footer>
 </footer>
 </body>
+<?php echo $this->Html->script('facebook'); ?>
 </html>

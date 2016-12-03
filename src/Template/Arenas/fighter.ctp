@@ -1,6 +1,16 @@
+<?php
+$session = $this->request->session();
+$myemail= $session->read('Auth.User.email');
+$myid=$session->read('Auth.User.id');
+?>
 
 
- <h1>All your fighters !</h1>
+<html>
+
+<body>
+    <h1 class="text-center">Hey <?php echo $myemail;?> ! Vos Combattants</h1>
+    <p class="text-center">Sur cette page vous pouvez voir l'ensemble de vos combattants avec leurs caractéristiques</p>
+
 
 
 <table>
@@ -49,19 +59,19 @@
 </table>
 <br>
 
-
-
-<button>
-    <?php echo $this->Html->link('add a fighter',
-                                 ['controller' => 'Arenas', 'action' => 'addFighter']
-                                );
+<?php echo $this->Html->link(
+        'Add a Fighter',
+        array('controller' => 'Arenas', 'action' => 'addFighter'),
+        ['class' => 'button']
+            );
     ?>
-</button>
 
-<button>
-    <?php echo $this->Html->link('back ',
-                                 ['controller' => 'Arenas', 'action' => '']
-                                );
-    ?>
-</button>
 
+</body>
+<footer>
+    <div class="footer-center">
+        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
+
+    </div>
+</footer>
+</html>
