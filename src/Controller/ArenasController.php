@@ -11,6 +11,7 @@ use App\Form\FighterForm;
 class ArenasController  extends AppController
 {
     
+    //TEST DE GIT
     
     public function index()
     {
