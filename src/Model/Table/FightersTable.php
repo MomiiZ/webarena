@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
+use Cake\ORM\Query;
 
 class FightersTable extends Table
 {
@@ -10,11 +11,11 @@ class FightersTable extends Table
             return "ok";
         }
        
-        public function putInfo(String $name){
+        public function putInfo($name){
             
             $fighters = TableRegistry::get('fighters');
             $query = $fighters->query();
-            $query->insert(['name','player_id','level','xp','skill_sight','skill_strength','skill_health','current_health'])
+            $query->insert(['name','player_id','level','xp','skill_sight','skill_strength','skill_health','current_health','coordinate_x','coordinate_y'])
                     ->values([
                         'name'=> $name,
                         'player_id' => 3,// a changer avec les varibles de session
@@ -23,7 +24,9 @@ class FightersTable extends Table
                         'skill_sight' => 2,
                         'skill_strength' => 1,
                         'skill_health' => 3,
-                        'current_health'=>3
+                        'current_health'=>3,
+                        'coordinate_x'=>4,
+                        'coordinate_y'=>4,
                     ])
                     ->execute();
             
@@ -96,7 +99,7 @@ class FightersTable extends Table
         }  
         
         //if a name exist when we add a fighter it returns false
-        public function ifExists(String $name){
+        public function ifExists($name){
             
             $test=true;
             $query=$this->find('all');
