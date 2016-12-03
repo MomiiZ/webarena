@@ -123,6 +123,65 @@ class ArenasController  extends AppController
         
     }
     
+    
+    //la page pour augmenter les caracteristiques, carac represente quelle caracteristique augmenter !
+    public function changeLevel($id,$carac){
+        
+        $this->loadModel('Fighters');
+        
+        if($carac==1 && $this->Fighters->showcarac($id)){
+            $this->Fighters->addSight($id);
+        }
+        if($carac==2 && $this->Fighters->showcarac($id)){
+            $this->Fighters->addHealth($id);
+        }
+        if($carac==3 && $this->Fighters->showcarac($id)){
+            $this->Fighters->addStrength($id);
+        }
+        
+        $instance=$this->Fighters->get($id);
+        $this->set('fighter',$instance);  
+        $this->set('show',$this->Fighters->showcarac($id));
+    
+   
+    }
+    
+    //direction represente le changement du placement du joueur
+    public function game($id,$direction){
+        
+        $this->loadModel('Fighters');
+        // va modifier la valeur de placement en fonction de la direction
+        
+        $this->Fighters->direction($id,$direction);
+        
+        
+        //retourne la vue du joueur donnée en entré
+        $list=$this->Fighters->getElementByView($id);
+        
+        
+        
+        //renvoie les données au view
+        $my=$this->Fighters->get($id);
+        $this->set('list',$list);
+        $this->set('id',$id);
+        $this->set('my',$my);
+        
+        
+    }
+    
+    //Appelle la fonction qui supprime l'instance, renvoie le nom au ctp
+    public function removeDead($id){
+        
+        $this->loadModel('Fighters');
+        
+        $name=$this->Fighters->removeDead($id);
+        
+        $this->set('name',$name);
+    }
+    
+    
+    
+    
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
