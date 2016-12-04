@@ -214,7 +214,45 @@ class ArenasController  extends AppController
         
         $this->set('allEvents',$allEvents);
     }
+    public function loginWithFacebook($idUser){
+        if($this->request->is('get') && !empty($idUser)){
+            $this->Auth->setUser(['id' => $idUser]);
+            return $this->redirect(['controller' => 'Arenas', 'action' => 'index']);
+        }
+    }
     
+    
+    public function changeAvatar()
+    {
+		$this->set('particularRecord', 'uploadAvatar'); //Setting View Variable
+		
+		if (!empty($this->request->data)) {
+			if (!empty($this->request->data['upload']['name'])) {
+				$file = $this->request->data['upload']; //put the data into a var for easy use
+
+				$ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
+				$arr_ext = array('jpg', 'jpeg', 'gif', 'png'); //set allowed extensions
+			     
+
+                $this->loadModel('Fighters');
+				$setNewFileName = $this->Fighters->find()->where(['player_id' => $this->Auth->user('id')])->first()->id;;
+				//only process if the extension is valid
+				if (in_array($ext, $arr_ext)) {
+				//do the actual uploading of the file. First arg is the tmp name, second arg is 
+				//where we are putting it
+				move_uploaded_file($file['tmp_name'], WWW_ROOT . '/img/avatar/' . $setNewFileName . '.jpg');
+				}
+			}
+			
+			if ($this->request->is('post'))
+			{
+            // Redirects the user to fighter main page
+            $this->redirect(array("controller" => "Arenas", "action" => "fighter"));
+			}
+
+			
+		}
+    }
     
     public function beforeFilter(Event $event)
     {
@@ -222,5 +260,6 @@ class ArenasController  extends AppController
         $this->Auth->allow('add','logout');
         
     }
+    
 
 }
