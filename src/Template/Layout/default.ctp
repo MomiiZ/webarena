@@ -92,20 +92,9 @@ $name = $session->read('Auth.User.email');
             function login(){
                 FB.login(function(response) {
                     statusChangeCallback(response);
-                    
                 }, {scope: 'public_profile,email'});
                 
             }
-            function testAPI() {
-      console.log('Welcome!  Fetching your information.... ');
-      FB.api('/me?fields=id,name,email,permissions', function(response) {
-        alert(response.name);
-        alert(response.email);
-        alert(response.permissions);
-        console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-      });
-    }
 
             function logout() {
                 if (typeof response === 'undefined') {
@@ -146,7 +135,11 @@ $name1 = $this->Html->link(
         echo '<li><a>';echo $name1; echo '</a></li>';                   
 if (!is_null($this->request->session()->read('Auth.User.email'))) {
    // user is logged 
-   
+   $fighters = $this->Html->link(
+        'Your Fighters',
+        array('controller' => 'Arenas', 'action' => 'fighter')); 
+        
+        echo '<li><a>';echo $fighters; echo '</a></li>';
     $events = $this->Html->link(
         'Events',
         array('controller' => 'Arenas', 'action' => 'diary')); 
@@ -192,6 +185,12 @@ if (!is_null($this->request->session()->read('Auth.User.email'))) {
         <?= $this->fetch('content') ?>
     </div>
 <footer>
+    <div class="footer-center">
+        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
+        <a href="https://github.com/MomiiZ/webarena/commits/master">Link 1</a>
+
+        
+    </div>
 </footer>
 </body>
 

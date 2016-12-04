@@ -93,10 +93,5 @@ if (!is_null($this->request->session()->read('Auth.User.email'))) {
     
 </div>
 </body>
-<footer>
-    <div class="footer-center">
-        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
 
-    </div>
-</footer>
 </html>

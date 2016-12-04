@@ -3,23 +3,26 @@
 <body>
     <h1 class="text-center">Vos Combattants</h1>
     <p class="text-center">Sur cette page vous pouvez voir l'ensemble de vos combattants avec leurs caractéristiques</p>
-    <p class="text-center">Sur cette page vous pouvez voir l'ensemble de vos combattants avec leurs caractéristiques</p>
+    <p class="text-center">Cliquez sur le nom de votre combattants pour l'améliorer.</p>
     <h2 class="text-center">Hey <?php echo $myemail;?> !</h2>
      
     <aside class="large-5 medium-5  columns" style="display:block;">
         
-         	<h3>Your avatar</h3>
+         	<h3>Your Avatar</h3>
          	 <?php 
-                if (file_exists(WWW_ROOT.'img'. DS . 'avatar' . DS . $myid.'.jpg'))
+                if (file_exists(WWW_ROOT.'img'. DS . 'avatar' . DS .  $myid.'.jpg'))
                 {
-                echo $this->Html->image('avatar/'.$sight[$col+1][$row+1].'.jpg',array("width"=>"50", "height"=>"50"));
+                echo $this->Html->image('avatar/'.$myid.'.jpg',array("width"=>"100", "height"=>"100"));
+
                 }else 
                    {
-                    echo $this->Html->image('avatar.jpg',array("width"=>"50", "height"=>"50"));
+                    echo $this->Html->image('avatar.jpg',array("width"=>"250", "height"=>"250"));
                     }
             ?>
-</aside>
-<a href="./changeAvatar" id="createFighterButton" class="button large-12 medium-12" onclick="" >Change my Avatar</a>
+
+                <a href="./changeAvatar" id="createFighterButton" class="button" onclick="" >Change my Avatar</a>
+    </aside>
+
 
 
    
@@ -82,10 +85,5 @@
     ?>
 
 </body>
-<footer>
-    <div class="footer-center">
-        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
 
-    </div>
-</footer>
 </html>

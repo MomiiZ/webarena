@@ -4,7 +4,8 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Form\FighterForm;
 use Cake\Network\Session;
-
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
 /**
 * Personal Controller
 * User personal interface
@@ -116,7 +117,7 @@ class ArenasController  extends AppController
         $session = $this->request->session();
         $myemail= $session->read('Auth.User.email');
         $myid=$session->read('Auth.User.id');
-        
+
         //Envoyer les variables sessions aux vues
         $this->set('myemail', $myemail);
         $this->set('myid', $myid);
@@ -224,23 +225,28 @@ class ArenasController  extends AppController
     
     public function changeAvatar()
     {
+            $session = $this->request->session();
+            $myemail= $session->read('Auth.User.email');
+            $myid=$session->read('Auth.User.id');
 		$this->set('particularRecord', 'uploadAvatar'); //Setting View Variable
 		
 		if (!empty($this->request->data)) {
 			if (!empty($this->request->data['upload']['name'])) {
-				$file = $this->request->data['upload']; //put the data into a var for easy use
-
+				
+                                $file = $this->request->data['upload']; //put the data into a var for easy use
+                                
 				$ext = substr(strtolower(strrchr($file['name'], '.')), 1); //get the extension
 				$arr_ext = array('jpg', 'jpeg', 'gif', 'png'); //set allowed extensions
 			     
 
                 $this->loadModel('Fighters');
+                                
 				$setNewFileName = $this->Fighters->find()->where(['player_id' => $this->Auth->user('id')])->first()->id;;
 				//only process if the extension is valid
 				if (in_array($ext, $arr_ext)) {
 				//do the actual uploading of the file. First arg is the tmp name, second arg is 
 				//where we are putting it
-				move_uploaded_file($file['tmp_name'], WWW_ROOT . '/img/avatar/' . $setNewFileName . '.jpg');
+				move_uploaded_file($file['tmp_name'], WWW_ROOT . '/img/avatar/' . $myid . '.jpg');
 				}
 			}
 			

@@ -6,17 +6,17 @@ the fighter <?= $name ?> is dead
 Do you want to create a new fighter ?
 
 <br>
-<button>
-    <?php echo $this->Html->link('YES',
-                                 ['controller' => 'Arenas', 'action' => 'addFighter']
-                                );
-    ?>
-</button>
 
-<button>
-    <?php echo $this->Html->link('NO',
-                                 ['controller' => 'Arenas', 'action' => 'fighter']
-                                );
+<?php echo $this->Html->link(
+        'YES',
+        array('controller' => 'Arenas', 'action' => 'addFighter'),
+        ['class' => 'button']
+            );
     ?>
-</button>
 
+<?php echo $this->Html->link(
+        'NO',
+        array('controller' => 'Arenas', 'action' => 'fighter'),
+        ['class' => 'button']
+            );
+?>
