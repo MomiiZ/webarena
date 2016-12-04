@@ -172,7 +172,6 @@ class FightersTable extends Table
                                      //JE TRICHE// 20 est la case poubelle pour deplacer les morts
                                      $o->coordinate_x=20;
                                      $o->coordinate_y=20;
-                                     $this->Flash->success('YOU KILLED HIM! ');
                                 }
                                 $this->save($o);
                                 $this->save($my);  

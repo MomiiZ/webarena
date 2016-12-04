@@ -187,7 +187,7 @@ if (!is_null($this->request->session()->read('Auth.User.email'))) {
 <footer>
     <div class="footer-center">
         <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
-        <a href="https://github.com/MomiiZ/webarena/commits/master">Link 1</a>
+        <a href="https://github.com/MomiiZ/webarena/commits/master">GitHub Log (You can find the log file in the source folder)</a>
 
         
     </div>

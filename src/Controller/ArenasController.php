@@ -14,7 +14,6 @@ use Cake\Filesystem\File;
 class ArenasController  extends AppController
 {
     
-    //TEST DE GIT
     
     public function index()
     {
@@ -134,10 +133,6 @@ class ArenasController  extends AppController
                                     ->select(['name'])
                                     ->where(['player_id' => $myid]);
         
-        
-        //$ok=$figterlist->toArray();
-        //pr($ok);
-        //$this->set('fighterlist',$ok);
     }
 
     

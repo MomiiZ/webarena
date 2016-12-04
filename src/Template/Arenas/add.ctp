@@ -10,11 +10,3 @@
 <?= $this->Form->button(__('Ajouter')); ?>
 <?= $this->Form->end() ?>
 </div>
-
-
-<footer>
-    <div class="footer-center">
-        <p> <strong>Gr-SI5-03-AG</strong> - Antoine BUI , Amarnath SUNDARAM</p>
-
-    </div>
-</footer>

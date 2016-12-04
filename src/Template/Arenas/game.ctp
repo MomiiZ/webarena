@@ -42,7 +42,7 @@
     ?>
 
 
-<table>
+<table style="border-collapse: separate; border-spacing: 2px; border: solid 10px black; ">
     
   
 
@@ -54,14 +54,14 @@
             
             if(abs($j - $my->coordinate_y) + abs($i - $my->coordinate_x) 
                                 > $my->skill_sight){
-                               echo "<td> . </td>";
+                                echo "<td style='background-color:DarkSlateBlue;'> . </td>";
             }
            
             elseif(isset($indexed[$i][$j])){
-              echo "<td>" . $indexed[$i][$j]->name . "</td>";
+              echo "<td style='background-color:SkyBlue;'>" . $indexed[$i][$j]->name . "</td>";
             }
             else{
-                echo "<td>  x  </td>" ;
+                echo "<td style='background-color:LightGrey;'>  x  </td>" ;
             }
         }
 
