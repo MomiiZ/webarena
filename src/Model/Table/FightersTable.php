@@ -4,6 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\ORM\Query;
+use App\Model\Table\EventsTable;
 
 class FightersTable extends Table
 {
@@ -69,6 +70,10 @@ class FightersTable extends Table
             $my=$this->get($id);
             $my->coordinate_x=$x;
             $my->coordinate_y=$y;
+            
+            $event= new EventsTable();
+            
+            $event->putInfo($my->name." enters in the arena",$my->coordinate_x,$my->coordinate_y);
             
             $this->save($my);
             //cette methode est appelé dans putinfo
@@ -146,6 +151,9 @@ class FightersTable extends Table
                             $o=$this->get($fighter->id);
                             //moi
                             $my=$this->get($id);
+                            
+                            $event = new EventsTable();
+                            
                              //Algorithme d'attaque 
                             if(rand(1,20)>10+$o->level-$my->level){
                                 //j'enleve de la vie à l'adversaire, le nombre de ma force
@@ -153,8 +161,13 @@ class FightersTable extends Table
                                 //je gagne 1 point xp pour la reuissite de l'attaque
                                 $my->xp++;
                                 
+                                $event->putInfo($my->name." attack ".$o->name. " and touch him",
+                                                $my->coordinate_x,$my->coordinate_y);
+                                
                                 // si je tue mon adversaire
                                 if($o->current_health<=0){
+                                    
+                                    $event->putInfo($my->name." attack ".$o->name. " and kill him",$my->coordinate_x,$my->coordinate_y);
                                     
                                      // je recupere en xp le level de mon adversaire 
                                      $my->xp+=$o->level;
@@ -166,6 +179,8 @@ class FightersTable extends Table
                                 $this->save($o);
                                 $this->save($my);  
                             }
+                            
+                            else $event->putInfo($my->name." try to attack ".$o->name. ", but don't touch him",$my->coordinate_x,$my->coordinate_y);
                                 $result=false;
                         }
                }
@@ -206,6 +221,11 @@ class FightersTable extends Table
             $o->skill_sight++;
             $o->level++;
             $this->save($o);
+            
+            $event = new EventsTable();
+            
+            $event->putInfo($o->name." add one sight, he have now ".$o->skill_sight." sight",$o->coordinate_x,$o->coordinate_y);
+            
         }
         
         //mise a jour de health dans la base de donnée ainsi que level
@@ -215,6 +235,11 @@ class FightersTable extends Table
             $o->current_health=$o->skill_health;
             $o->level++;
             $this->save($o);
+             
+            $event = new EventsTable();
+            
+            $event->putInfo($o->name." add one health, he have now ".$o->skill_health." health",$o->coordinate_x,$o->coordinate_y);
+             
         }
         
         //mise a jour de strength dans la base de donnée ainsi que level
@@ -223,6 +248,10 @@ class FightersTable extends Table
             $o->skill_strength++;
             $o->level++;
             $this->save($o);
+             
+            $event = new EventsTable();
+            
+            $event->putInfo($o->name." add one strength, he have now ".$o->skill_strength." strength",$o->coordinate_x,$o->coordinate_y);
         }
         
         //Recupere le nom, supprime l'instance, et envoie le nom au controller

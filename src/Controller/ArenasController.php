@@ -198,6 +198,14 @@ class ArenasController  extends AppController
     }
     
     
+    public function diary(){
+        
+        $this->loadModel('Events');
+        
+        $allEvents=$this->Events->allEvents();
+        
+        $this->set('allEvents',$allEvents);
+    }
     
     
     public function beforeFilter(Event $event)
