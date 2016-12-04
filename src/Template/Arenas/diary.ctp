@@ -21,8 +21,8 @@
             <td><?= $event->coordinate_x ?></td>
             <td><?= $event->coordinate_y?></td>
             <td><?= $event->date?></td>
+            
         
-       
-       
+            
  <?php endforeach; ?>
 </table>

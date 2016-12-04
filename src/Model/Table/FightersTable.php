@@ -153,32 +153,32 @@ class FightersTable extends Table
                             $event = new EventsTable();
                             
                              //Algorithme d'attaque 
-                            if(rand(1,20)>10+$o->level-$my->level){
+                            if(rand(1,20)>(10+$o->level-$my->level)){
                                 //j'enleve de la vie à l'adversaire, le nombre de ma force
                                 $o->current_health-=$my->skill_strength;
                                 //je gagne 1 point xp pour la reuissite de l'attaque
                                 $my->xp++;
                                 
-                                $event->putInfo($my->name." attack ".$o->name. " and touch him",
+                                $event->putInfo($my->name." attacked ".$o->name. " and touched him",
                                                 $my->coordinate_x,$my->coordinate_y);
                                 
                                 // si je tue mon adversaire
                                 if($o->current_health<=0){
                                     
-                                    $event->putInfo($my->name." attack ".$o->name. " and kill him",$my->coordinate_x,$my->coordinate_y);
+                                    $event->putInfo($my->name." attacked ".$o->name. " and killed him",$my->coordinate_x,$my->coordinate_y);
                                     
                                      // je recupere en xp le level de mon adversaire 
                                      $my->xp+=$o->level;
                                      //JE TRICHE// 20 est la case poubelle pour deplacer les morts
                                      $o->coordinate_x=20;
                                      $o->coordinate_y=20;
-                                   
+                                     $this->Flash->success('YOU KILLED HIM! ');
                                 }
                                 $this->save($o);
                                 $this->save($my);  
                             }
                             
-                            else $event->putInfo($my->name." try to attack ".$o->name. ", but don't touch him",$my->coordinate_x,$my->coordinate_y);
+                            else $event->putInfo($my->name." tried to attack ".$o->name. ", but missed him",$my->coordinate_x,$my->coordinate_y);
                                 $result=false;
                         }
                }
@@ -222,7 +222,7 @@ class FightersTable extends Table
             
             $event = new EventsTable();
             
-            $event->putInfo($o->name." add one sight, he have now ".$o->skill_sight." sight",$o->coordinate_x,$o->coordinate_y);
+            $event->putInfo($o->name." added 1 sight, he has now ".$o->skill_sight." sight points",$o->coordinate_x,$o->coordinate_y);
             
         }
         
@@ -236,7 +236,7 @@ class FightersTable extends Table
              
             $event = new EventsTable();
             
-            $event->putInfo($o->name." add one health, he have now ".$o->skill_health." health",$o->coordinate_x,$o->coordinate_y);
+            $event->putInfo($o->name." added 1 health, he has now ".$o->skill_health." health points",$o->coordinate_x,$o->coordinate_y);
              
         }
         
@@ -249,7 +249,7 @@ class FightersTable extends Table
              
             $event = new EventsTable();
             
-            $event->putInfo($o->name." add one strength, he have now ".$o->skill_strength." strength",$o->coordinate_x,$o->coordinate_y);
+            $event->putInfo($o->name." add 1 strength, he has now ".$o->skill_strength." strength points",$o->coordinate_x,$o->coordinate_y);
         }
         
         //Recupere le nom, supprime l'instance, et envoie le nom au controller
