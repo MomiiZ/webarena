@@ -6,17 +6,18 @@ use Cake\ORM\TableRegistry;
 use Cake\ORM\Query;
 use App\Model\Table\EventsTable;
 
+
 class FightersTable extends Table
 {
        
-        public function putInfo($name){
+        public function putInfo($name, $myid){
             
             $fighters = TableRegistry::get('fighters');
             $query = $fighters->query();
             $query->insert(['name','player_id','level','xp','skill_sight','skill_strength','skill_health','current_health','coordinate_x','coordinate_y'])
                     ->values([
                         'name'=> $name,
-                        'player_id' => 3,// a changer avec les varibles de session
+                        'player_id' => $myid,
                         'level'=>1,
                         'xp'=>0,
                         'skill_sight' => 2,
@@ -91,13 +92,10 @@ class FightersTable extends Table
            
         }
         
-        public function allFighters(){
-            //$session = $this->request->session();
-            //$myemail= $session->read('Auth.User.email');
-            //$myid=$session->read('Auth.User.id');
+        public function allFighters($myid){
             
             //prendre tout les fighters dans l'ordre ascendant de l'id
-            $query=$this->find('all')->where(['player_id' => 'dbf8aa89-5569-4031-8340-a96700e0dc3a'])->order(['id'=> 'ASC']);
+            $query=$this->find('all')->where(['player_id' => $myid])->order(['id'=> 'ASC']);
             //mettre la requete dans un tableau
             $allFighter=$query->toArray();
             

@@ -23,7 +23,7 @@ class EventsTable extends Table
         $event = TableRegistry::get('events');
         
         $putdate = new \DateTime();
-       
+        $putdate->setTimezone(new \DateTimeZone('Europe/Paris'));
         $query = $event->query();
         
             $query->insert(['name','coordinate_x','coordinate_y','date'])

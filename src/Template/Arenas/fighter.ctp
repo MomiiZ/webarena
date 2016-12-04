@@ -1,10 +1,3 @@
-<?php
-$session = $this->request->session();
-$myemail= $session->read('Auth.User.email');
-$myid=$session->read('Auth.User.id');
-?>
-
-
 <html>
 
 <body>

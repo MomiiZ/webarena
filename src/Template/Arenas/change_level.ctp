@@ -21,43 +21,45 @@
     </tr>
 <br>
     
-    <?php  if($show) {   ?>
-    <button>
-      <?php echo $this->Html->link('Sight',
-                              ['controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,1]
-                                );
-           ?>  
-    </button>
-    <button>
-      <?php echo $this->Html->link('Health',
-                              ['controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,2]
-                                );
-           ?> 
-    </button>
-    <button>
-      <?php echo $this->Html->link('Strength',
-                              ['controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,3]
-                                );
-           ?> 
-    </button>
-    <?php   }else {  ?>
+    <?php  if($show) {  
+        echo $this->Html->link(
+                                'Sight',
+                                array('controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,1),
+                                ['class' => 'button']
+                                    );
+   
+        echo $this->Html->link(
+                                'Health',
+                                array('controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,2),
+                                ['class' => 'button']
+                                    );
+        
+        echo $this->Html->link(
+                                'Strength',
+                                array('controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,3),
+                                ['class' => 'button']
+                                    );
+        
+        }else { 
+     ?>
 
         <h3> You need <?= (4-($fighter->xp%4)) ?>  more xp to add caracteristic </h3>
         <br>
     <?php } ?>
 </table>
 
+    <?php 
+        
+        echo $this->Html->link(
+                                'Go back',
+                                array('controller' => 'Arenas', 'action' => 'fighter'),
+                                ['class' => 'button']
+                                    );
 
-<button>
-    <?php echo $this->Html->link('back',
-                                 ['controller' => 'Arenas', 'action' => 'fighter', '_full' => true]
-                                );
-    ?>
-</button>
 
-<button>
-    <?php echo $this->Html->link('PLAY',
-                                 ['controller' => 'Arenas', 'action' => 'game',$fighter->id,0]
-                                );
-    ?>
-</button>
+        echo $this->Html->link(
+                                'PLAY !',
+                                array('controller' => 'Arenas', 'action' => 'game',$fighter->id,0),
+                                ['class' => 'button']
+                                    );
+?>

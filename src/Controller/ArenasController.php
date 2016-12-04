@@ -31,7 +31,7 @@ class ArenasController  extends AppController
         //$hi=$this->Fighters->test();
         //$this->set('hihi',$hi);
         //Send data to view
-        $this->set('hihi', $this->Fighters->test());
+        //$this->set('hihi', $this->Fighters->test());
     }
     
     public function add()
@@ -73,6 +73,9 @@ class ArenasController  extends AppController
 
     public function addFighter()
     {
+        $session = $this->request->session();
+        $myemail= $session->read('Auth.User.email');
+        $myid=$session->read('Auth.User.id');
          $create = new FighterForm();
        
             if ($this->request->is('post')) {
@@ -87,7 +90,7 @@ class ArenasController  extends AppController
                            //message flash de la reussite
                             $this->Flash->success('Fighter is created ! ');
                             //va entrer les données du formulaire dans la base de donnée
-                            $this->Fighters->putInfo($a['name']);
+                            $this->Fighters->putInfo($a['name'], $myid);
                             //redirection vers la page de confirmation apres avoir appuyé sur submit
                             $this->redirect(['controller'=>'Arenas','action'=>'confirmation']); 
                     }else{
@@ -111,11 +114,16 @@ class ArenasController  extends AppController
     public function fighter(){
      
         $session = $this->request->session();
-
+        $myemail= $session->read('Auth.User.email');
         $myid=$session->read('Auth.User.id');
+        
+        //Envoyer les variables sessions aux vues
+        $this->set('myemail', $myemail);
+        $this->set('myid', $myid);
 
+        
         $this->loadModel('Fighters');
-        $allFighter=$this->Fighters->allFighters();
+        $allFighter=$this->Fighters->allFighters($myid);
         
         $this->set('allFighter',$allFighter); 
         

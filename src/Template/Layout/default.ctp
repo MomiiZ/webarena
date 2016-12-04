@@ -61,11 +61,19 @@ $name1 = $this->Html->link(
 if (!is_null($this->request->session()->read('Auth.User.email'))) {
    // user is logged 
    
+    $events = $this->Html->link(
+        'Events',
+        array('controller' => 'Arenas', 'action' => 'diary')); 
+        
+        echo '<li><a>';echo $events; echo '</a></li>';
+   
     $logout = $this->Html->link(
         'Logout',
         array('controller' => 'Arenas', 'action' => 'logout')); 
         
         echo '<li><a>';echo $logout; echo '</a></li>';
+        
+    
    
 }
     

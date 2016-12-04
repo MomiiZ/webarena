@@ -15,9 +15,12 @@ Health: <?php echo $fighter->current_health;?>/<?php echo $fighter->skill_health
 
 
 
-<button>
-    <?php echo $this->Html->link('fighters page',
-                                 ['controller' => 'Arenas', 'action' => 'fighter', '_full' => true]
-                                );
+<?php echo $this->Html->link(
+        'Fighters Page',
+        array('controller' => 'Arenas', 'action' => 'fighter','_full' => true),
+        ['class' => 'button']
+            );
     ?>
-</button>
+
+
+

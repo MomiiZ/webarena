@@ -8,6 +8,8 @@
 
 ?>
 
+
+<!--AFFICHER LE NOM FIGHTER AVEC SES CARACTERISIQUE AVEC $my -->
 <table>
     <tr>
                 <td><?= $my->name ?></td>
@@ -71,14 +73,12 @@
 </table>
 
 
-<!--AFFICHER LE NOM FIGHTER AVEC SES CARACTERISIQUE AVEC $my -->
 
 
-<button>
-    <?php echo $this->Html->link('back ',
-                                 ['controller' => 'Arenas', 'action' => 'fighter']
-                                );
-    ?>
-</button>
-
-
+    <?php 
+        echo $this->Html->link(
+                                'My Fighters',
+                                array('controller' => 'Arenas', 'action' => 'fighter'),
+                                ['class' => 'button']
+                                    );
+        ?>
