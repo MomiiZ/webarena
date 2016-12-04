@@ -3,6 +3,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Form\FighterForm;
+use Cake\Network\Session;
+
 /**
 * Personal Controller
 * User personal interface
@@ -107,11 +109,26 @@ class ArenasController  extends AppController
     }
     
     public function fighter(){
-        
+     
+        $session = $this->request->session();
+
+        $myid=$session->read('Auth.User.id');
+
         $this->loadModel('Fighters');
         $allFighter=$this->Fighters->allFighters();
         
-        $this->set('allFighter',$allFighter);   
+        $this->set('allFighter',$allFighter); 
+        
+   
+        //Réucupère Array du nom des fighters ayant comme id celui qui est connecté (SESSION)
+        $figterlist=$this->Fighters->find('list')
+                                    ->select(['name'])
+                                    ->where(['player_id' => $myid]);
+        
+        
+        //$ok=$figterlist->toArray();
+        //pr($ok);
+        //$this->set('fighterlist',$ok);
     }
 
     

@@ -7,9 +7,6 @@ use Cake\ORM\Query;
 
 class FightersTable extends Table
 {
-        public function test(){
-            return "ok";
-        }
        
         public function putInfo($name){
             
@@ -90,8 +87,12 @@ class FightersTable extends Table
         }
         
         public function allFighters(){
+            //$session = $this->request->session();
+            //$myemail= $session->read('Auth.User.email');
+            //$myid=$session->read('Auth.User.id');
+            
             //prendre tout les fighters dans l'ordre ascendant de l'id
-            $query=$this->find('all')->order(['id'=> 'ASC']);
+            $query=$this->find('all')->where(['player_id' => 'dbf8aa89-5569-4031-8340-a96700e0dc3a'])->order(['id'=> 'ASC']);
             //mettre la requete dans un tableau
             $allFighter=$query->toArray();
             

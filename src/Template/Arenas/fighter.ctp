@@ -30,8 +30,10 @@ $myid=$session->read('Auth.User.id');
         
 
         <td> <?php echo $this->Html->link($fighter->name,
-                                 ['controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,0]
+                                 ['controller' => 'Arenas', 'action' => 'changeLevel',$fighter->id,0],
+                                   ['condition' => $fighter->player_id == $myid]
                                 );
+                    
             ?>
         </td>
 
